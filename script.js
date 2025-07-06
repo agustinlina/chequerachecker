@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
         if (daysDiff > 180) {
-          daysText.textContent = `${daysDiff} días, te estas yendo al posta papu`;
+          daysText.textContent = `${daysDiff} días, epa te estas yendo al pasto 😡`;
         } else if (daysDiff >= 0) {
-          daysText.textContent = `${daysDiff} días hasta cobrar`;
+          daysText.textContent = `${daysDiff} días`;
         } else {
-          daysText.textContent = `Ya vencido (${Math.abs(daysDiff)} días atrás)`;
+          daysText.textContent = `Está vencido por(${Math.abs(daysDiff)}`;
         }
       } else {
         daysText.textContent = '';

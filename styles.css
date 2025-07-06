@@ -4,7 +4,20 @@ body {
   color: #ffffff;
   margin: 0;
   padding: 0;
+  text-underline-offset: 4px;
 }
+
+header{
+  display: flex;
+  gap: 12px;
+}
+header a{
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+}
+
+
 
 .container {
   max-width: 700px;
