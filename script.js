@@ -24,15 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Botón para borrar la fecha del cheque
     const deleteButton = document.createElement('button')
-    deleteButton.style.backgroundImage = 'url(./goma.png)'
+    // deleteButton.style.backgroundImage = 'url(./goma.png)'
+    deleteButton.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;gap:6px"><img src="./goma.png"><span>Borrar fecha</span></div>'
     deleteButton.style.backgroundRepeat = 'no-repeat'
     deleteButton.classList.add('delete-cheque-button')
-    deleteButton.style.width = '36px'
-    deleteButton.style.height = '36px'
+    deleteButton.style.width = 'fit-content'
     deleteButton.style.backgroundPosition = 'center'
-    deleteButton.style.position = 'absolute'
-    deleteButton.style.transform = 'translate(1100%,18%)'
-    deleteButton.style.padding = '28px'
+    
+    deleteButton.style.padding = '16px 8px'
     deleteButton.addEventListener('click', () => {
       input.value = ''
       updateDaysRemaining()
