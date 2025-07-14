@@ -15,6 +15,10 @@
 body {
   background-color: var(--bg-color);
   padding: 12px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
