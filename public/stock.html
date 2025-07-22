@@ -2,69 +2,53 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stock Cubiertas</title>
-    <link rel="shortcut icon" href="./media/logo.svg" type="image/x-icon">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
-    <link rel="stylesheet" href="css/stock.css" />
-    <script defer src="stock.js"></script>
+  <meta charset="UTF-8">
+  <title>Stock Olav</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="./stock.js"></script>
+  <link rel="stylesheet" href="./css/stock.css">
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <a href="./index.html">Incio</a>
-            <a href="./calculadora.html">Calculadora</a>
-            <a href="./comercial.html">Plazos de pago</a>
-            <a href="./stock.html"><span style="text-decoration:underline;">Stock</span></a>
-        </header>
-    </div>
+  <header class="container">
+    <a href="./index.html">Inicio</a>
+    <a href="./calculadora.html">Calculadora</a>
+    <a href="./comercial.html">Plazos de pago</a>
+    <a href="./stock.html"><span style="text-decoration:underline;">Stock</span></a>
+  </header>
+  <div class="container">
+   
+      <h1>Cubiertas nuevas</h1>
+      <div class="controles_buscador">
+        <label for="stock-select" style="font-weight:600;color:#8bf8d2;">Stock:</label>
+        <select id="stock-select" class="stock-select">
+          <option value="olavarria" selected>Olavarría</option>
+          <option value="cordoba">Córdoba</option>
+        </select>
+        <button class="filtro-btn" id="filtro-camion">Camión importado</button>
+        <button class="filtro-btn" id="filtro-auto">Auto importado</button>
+        <button class="filtro-btn" id="filtro-todos">Todos</button>
+        <input type="text" class="buscador" id="buscador" placeholder="🔎 Buscar por código o descripción...">
+      </div>
+    
+    <table id="stock-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descripción</th>
+          <th>Rubro</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Datos aquí -->
+      </tbody>
+    </table>
+    <div id="loading">Cargando...</div>
+    <div id="error"></div>
+  </div>
 
-    <div class="container" style="padding:16px 0 0 0;">
-        <div style="text-align: center;">
-            <h1>Stock de Cubiertas</h1>
-            <p>Última actualización: <span id="lastUpdate">Cargando...</span></p>
 
-        </div>
-
-
-        <div class="controls"
-            style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;">
-            <div class="controls_buscador">
-                <input class="buscador" type="text" id="searchInput" placeholder="Buscar una cubierta..." />
-                <img class="lupita" src="./media/lupita.svg" alt="">
-            </div>
-            <div style="margin-bottom:1rem; text-align:center;">
-                <label for="fileSelect">Stock de: </label>
-                <select id="fileSelect">
-                    <option value="stock_olavarria.XLS">Olavarría</option>
-                    <option value="stock_cba.XLS">Córdoba</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="filterSelect">Filtrar:</label>
-                <select id="filterSelect">
-                    <option value="todos">Todas las cubiertas</option>
-                    <option value="cubierta_china">Auto/camioneta chino</option>
-                    <option value="camion_chino">Camión chino</option>
-                </select>
-            </div>
-        </div>
-        <br>
-        <table>
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Cantidad Disponible</th>
-                </tr>
-            </thead>
-            <tbody id="stockBody">
-                <!-- Filas generadas dinámicamente -->
-            </tbody>
-        </table>
-    </div>
 </body>
 
 </html>
