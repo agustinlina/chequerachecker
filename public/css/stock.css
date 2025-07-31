@@ -34,6 +34,7 @@ header {
   display: flex;
   gap: 12px;
   margin: 2rem auto;
+  flex-wrap: wrap;
 }
 header a {
   text-decoration: none;
@@ -180,36 +181,73 @@ a:hover {
 /* Responsive para filtros */
 @media (max-width: 600px) {
   .container {
-    padding: 0.5rem;
+    width: 100%;
+    padding: 8px;
   }
   .controles_buscador {
+    width: 100%;
     flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
   }
   .buscador {
     max-width: 100%;
   }
-}
-.stock-select {
-  background: #161616;
-  color: var(--fg-color);
-  border: 1.5px solid var(--border-color);
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 1em;
-  margin-right: 8px;
-  box-shadow: 0 1px 6px #0002;
-  transition: border 0.18s;
-}
+  .stock-select {
+    background: #161616;
+    color: var(--fg-color);
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1em;
+    margin-right: 8px;
+    box-shadow: 0 1px 6px #0002;
+    transition: border 0.18s;
+  }
 
-.stock-select:focus {
-  outline: none;
-  border-color: #2dffdd;
-}
+  .stock-select:focus {
+    outline: none;
+    border-color: var(--border-color);
+  }
 
-.controles_buscador label {
-  margin-right: 3px;
-  font-size: 0.99em;
-  letter-spacing: 0.3px;
+  .controles_buscador label {
+    margin-right: 3px;
+    font-size: 0.99em;
+    letter-spacing: 0.3px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 16px 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  th {
+    background-color: #1f1f1f;
+    text-align: left;
+    font-weight: 400;
+    color: var(--accent-color);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #1b1b1b;
+  }
+
+  tbody tr:hover {
+    background-color: var(--hover-color);
+  }
 }

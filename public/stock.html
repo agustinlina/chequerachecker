@@ -19,13 +19,15 @@
   </header>
   <div class="container">
 
-    <h1>Cubiertas nuevas</h1>
+    <h2>Stock: Cubiertas nuevas</h2>
     <div class="controles_buscador">
-      <label for="stock-select" style="font-weight:600;color:#8bf8d2;">Stock:</label>
+      <label for="stock-select" style="font-weight:600;">Stock:</label>
       <select id="stock-select" class="stock-select">
+
         <option value="olavarria" selected>Olavarría</option>
         <option value="cordoba">Córdoba</option>
       </select>
+      <label for="stock-select" style="font-weight:600;">Filtros:</label>
       <button class="filtro-btn" id="filtro-camion">Camión importado</button>
       <button class="filtro-btn" id="filtro-auto">Auto importado</button>
       <button class="filtro-btn" id="filtro-todos">Todos</button>
@@ -35,7 +37,6 @@
     <table id="stock-table">
       <thead>
         <tr>
-          <th>Código</th>
           <th>Descripción</th>
           <th>Rubro</th>
           <th>Stock</th>

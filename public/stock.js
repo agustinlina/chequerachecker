@@ -50,7 +50,6 @@ function renderTable(data) {
   data.forEach(item => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${item.codigo || ''}</td>
       <td>${item.descripcion || ''}</td>
       <td>${item.rubro || ''}</td>
       <td>${item.stock || ''}</td>

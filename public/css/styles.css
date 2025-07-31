@@ -15,6 +15,7 @@ body {
 header {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 header a {
   text-decoration: none;
