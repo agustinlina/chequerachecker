@@ -18,14 +18,12 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
-
 header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 header a {
   text-decoration: none !important;
@@ -39,15 +37,21 @@ header a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 36px;
   gap: 24px;
   line-break: 5px;
 }
 
-header a img{
+.grupo_tarjetitas {
+  display: flex;
+  gap: 16px;
+  flex-direction: row;
+}
+
+header a img {
   width: 30px;
 }
-header a:hover{
+header a:hover {
   background-color: #3e3e3e;
   transition: 1ms;
 }
@@ -55,6 +59,7 @@ header a:hover{
 .container {
   max-width: 700px;
   background: #1e1e1e;
+  flex-wrap: wrap;
   padding: 24px 12px;
   text-align: center;
   border-radius: 12px;
@@ -64,4 +69,12 @@ header a:hover{
   gap: 16px;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .grupo_tarjetitas {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+  }
 }
