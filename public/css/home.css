@@ -9,23 +9,23 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  padding: 0;
   color: var(--fg-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
-  background-color: var(--bg-color);
-  padding: 12px;
   justify-content: center;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
+  gap: 32px;
 }
-header {
+.header {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-header a {
+.header a {
   text-decoration: none !important;
   color: white;
   font-size: 16px;
@@ -42,18 +42,15 @@ header a {
   line-break: 5px;
 }
 
+.header a:hover{
+  transition: 200ms;
+    background-color:  #393939;
+}
+
 .grupo_tarjetitas {
   display: flex;
   gap: 16px;
   flex-direction: row;
-}
-
-header a img {
-  width: 30px;
-}
-header a:hover {
-  background-color: #3e3e3e;
-  transition: 1ms;
 }
 
 .container {

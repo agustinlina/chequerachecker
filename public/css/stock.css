@@ -30,17 +30,6 @@
   padding: 0 8px;
   pointer-events: none;
 }
-header {
-  display: flex;
-  gap: 12px;
-  margin: 2rem auto;
-  flex-wrap: wrap;
-}
-header a {
-  text-decoration: none;
-  color: white;
-  font-weight: 800;
-}
 
 .container {
   max-width: 700px;
@@ -53,7 +42,7 @@ header a {
 
 body {
   margin: 0;
-  padding: 20px;
+
   background-color: var(--bg-color);
   color: var(--fg-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -133,7 +122,7 @@ a:hover {
 
 .buscador:focus {
   outline: none;
-  border-color: #2dffdd;
+  border-color: white;
   box-shadow: 0 2px 12px rgba(45, 255, 221, 0.07);
 }
 
@@ -166,8 +155,8 @@ a:hover {
 .filtro-btn:hover,
 .filtro-btn.active {
   background: #242b28;
-  border-color: #2dffdd;
-  color: #2dffdd;
+  border-color: white;
+  color: white;
 }
 
 .lupita {

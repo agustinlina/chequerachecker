@@ -7,16 +7,6 @@ body {
   text-underline-offset: 4px;
 }
 
-header {
-  display: flex;
-  gap: 12px;
-flex-wrap: wrap;
-}
-header a {
-  text-decoration: none;
-  color: white;
-  font-weight: 800;
-}
 
 .container {
   max-width: 700px;
@@ -33,12 +23,12 @@ h1 {
   font-size: 2rem;
 }
 
-label {
+/* label {
   display: block;
   margin: 0.5rem 0 0.2rem;
   font-weight: bold;
   font-size: 1.1rem;
-}
+} */
 
 input[type='date'] {
   width: 80%;
@@ -64,20 +54,9 @@ input[type='date'] {
   font-weight: bold;
 }
 
-button {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.1rem;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 1.5rem;
-  transition: background-color 0.3s ease;
-}
+ 
 
-button:hover {
+.button:hover {
   background-color: #444;
 }
 
