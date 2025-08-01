@@ -25,12 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botón para borrar la fecha del cheque
     const deleteButton = document.createElement('button')
     deleteButton.innerHTML =
-      '<div class="button" style="display:flex;align-items:center;justify-content:center;gap:6px"><img src="./media/goma.png"><span style="font-size:12px;">Borrar fecha</span></div>'
+      '<div class="btn_delete d-flex gap-2"><img width="22px" src="./media/goma.png" alt="">Borrar fecha</div>'
     deleteButton.style.backgroundRepeat = 'no-repeat'
     deleteButton.classList.add('delete-cheque-button')
     deleteButton.style.width = 'fit-content'
     deleteButton.style.backgroundPosition = 'center'
-
+    deleteButton.style.backgroundColor = '#2a2a2a'
+    deleteButton.style.borderColor = 'transparent'
+    deleteButton.style.borderRadius = '8px'
     deleteButton.style.padding = '16px 8px'
     deleteButton.addEventListener('click', () => {
       input.value = ''
@@ -44,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return div
   }
+
 
   function updateDaysRemaining () {
     const invoiceDateValue = invoiceDateInput.value
