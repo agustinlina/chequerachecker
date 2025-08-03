@@ -2,7 +2,7 @@
 :root {
   --bg-color: #121212;
   --fg-color: #e0e0e0;
-  --accent-color: #1e88e5;
+  --accent: #e9c500;
   --border-color: #272727;
   --hover-color: #1f1f1f;
 }
@@ -10,16 +10,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: var(--fg-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body {
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
-}
+
 .header {
   display: flex;
   flex-direction: column;
@@ -27,10 +20,9 @@ body {
 }
 .header a {
   text-decoration: none !important;
-  color: white;
+  color: var(--accent);
   font-size: 16px;
   font-weight: 800;
-  background-color: var(--bg-color);
   height: 200px;
   width: 200px;
   display: flex;
@@ -40,11 +32,12 @@ body {
   border-radius: 36px;
   gap: 24px;
   line-break: 5px;
+  background-color: #233475;
 }
 
-.header a:hover{
+.header a:hover {
   transition: 200ms;
-    background-color:  #393939;
+ background-color: #1e2c62;
 }
 
 .grupo_tarjetitas {
@@ -53,14 +46,13 @@ body {
   flex-direction: row;
 }
 
+
 .container {
   max-width: 700px;
-  background: #1e1e1e;
   flex-wrap: wrap;
   padding: 24px 12px;
   text-align: center;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   gap: 16px;

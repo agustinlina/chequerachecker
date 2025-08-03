@@ -13,7 +13,6 @@ body {
   background: #1e1e1e;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 h1 {
@@ -30,7 +29,21 @@ label {
 }
 
 .delete-cheque-button:hover {
-  background-color: #555!important;
+  background-color: #111c46!important;
+}
+
+#addChequeButton{
+  background-color: #e9c500;
+  color: #111c46;
+  font-weight: bold;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+#addChequeButton:hover{
+  transition: 100ms;
+  background-color:  #e9c600c8;;
 }
 
 input[type='date'] {
@@ -38,7 +51,7 @@ input[type='date'] {
   padding: 1rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  border: 1px solid #555;
+  border: 1px solid #e9c600c8;
   border-radius: 8px;
   background-color: #2a2a2a;
   color: #fff;
@@ -64,9 +77,12 @@ input[type='date'] {
   width: 100%;
 }
 .button:hover {
-  background-color: #444;
+  background-color: #b31414;
 }
 
+input{
+  background-color:  #16245a!important;
+}
 
 @media (max-width: 480px) {
   .container {

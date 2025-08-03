@@ -2,7 +2,7 @@
 :root {
   --bg-color: #121212;
   --fg-color: #e0e0e0;
-  --accent-color: #e0e0e0;
+  --accent-color:  #e9c500;
   --border-color: #272727;
   --hover-color: #1f1f1f;
 }
@@ -10,7 +10,7 @@
 .buscador {
   width: 100%;
   padding: 8px 16px;
-  background-color: var(--bg-color);
+  background-color: #16245a!important;
   border: none;
   color: var(--fg-color);
 }
@@ -19,7 +19,6 @@
   display: flex;
   width: fit-content;
   height: fit-content;
-  background-color: var(--bg-color);
   align-items: center;
   gap: 4px;
 }
@@ -37,7 +36,6 @@
   background: #1e1e1e;
   padding: 0.8rem;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -64,7 +62,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   background-color: #1a1a1a;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 th,
@@ -116,14 +113,11 @@ a:hover {
   border-radius: 8px;
   margin: 0 auto 18px auto;
   font-size: 1em;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: border 0.18s, box-shadow 0.18s;
 }
 
 .buscador:focus {
   outline: none;
   border-color: white;
-  box-shadow: 0 2px 12px rgba(45, 255, 221, 0.07);
 }
 
 /* Contenedor de los controles (filtros y buscador juntos) */
@@ -139,24 +133,23 @@ a:hover {
 
 /* Botones de filtro */
 .filtro-btn {
-  background: #171717;
-  color: var(--fg-color);
+  background-color: var(--accent-color);
+  color: #16245a;
   border: 1.5px solid var(--border-color);
   border-radius: 8px;
   padding: 8px 16px;
   font-size: 0.98em;
   cursor: pointer;
   transition: background 0.2s, border 0.2s, color 0.2s;
-  box-shadow: 0 1px 8px #0003;
   font-weight: 500;
   outline: none;
 }
 
 .filtro-btn:hover,
 .filtro-btn.active {
-  background: #242b28;
-  border-color: white;
-  color: white;
+  background: #16245a;
+  color: var(--accent-color);
+  border-color: var(--accent-color);
 }
 
 .lupita {
@@ -166,6 +159,39 @@ a:hover {
   font-size: 1.15em;
   color: #757575;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 16px 8px;
+    border: 1px solid var #e9c500;
+    background-color: #16245a;
+  }
+
+  th {
+    background-color: #16245a!important;
+    text-align: left;
+    font-weight: 400;
+    color: var(--accent-color);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var #e9c500;
+    border: 1px solid #e9c500;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #e9c500;
+  }
+
+  tbody tr:hover {
+    background-color: #e9c500;
+  }
 
 /* Responsive para filtros */
 @media (max-width: 600px) {
@@ -192,7 +218,6 @@ a:hover {
     padding: 8px 16px;
     font-size: 1em;
     margin-right: 8px;
-    box-shadow: 0 1px 6px #0002;
     transition: border 0.18s;
   }
 
@@ -207,36 +232,6 @@ a:hover {
     letter-spacing: 0.3px;
   }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #1a1a1a;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 12px;
-  }
 
-  th,
-  td {
-    padding: 16px 8px;
-    border: 1px solid var(--border-color);
-  }
-
-  th {
-    background-color: #1f1f1f;
-    text-align: left;
-    font-weight: 400;
-    color: var(--accent-color);
-  }
-
-  tbody tr {
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: #1b1b1b;
-  }
-
-  tbody tr:hover {
-    background-color: var(--hover-color);
-  }
 }
+  

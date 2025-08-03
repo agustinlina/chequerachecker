@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const invoiceDateInput = document.getElementById('invoiceDate')
   const chequeList = document.getElementById('chequeList')
   const addButton = document.createElement('button')
-  addButton.textContent = 'Agregar cheque'
+  addButton.textContent = '+ Agregar cheque'
   addButton.id = 'addChequeButton'
   let chequeCount = 0
 
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botón para borrar la fecha del cheque
     const deleteButton = document.createElement('button')
     deleteButton.innerHTML =
-      '<div class="btn_delete d-flex gap-2"><img width="22px" src="./media/goma.png" alt="">Borrar fecha</div>'
+      '<div class="btn_delete d-flex gap-2 active font-bold" ><img width="22px" src="./media/goma.png" alt="">Borrar fecha</div>'
     deleteButton.style.backgroundRepeat = 'no-repeat'
     deleteButton.classList.add('delete-cheque-button')
     deleteButton.style.width = 'fit-content'
     deleteButton.style.backgroundPosition = 'center'
-    deleteButton.style.backgroundColor = '#2a2a2a'
+    deleteButton.style.backgroundColor = '#16245a'
     deleteButton.style.borderColor = 'transparent'
     deleteButton.style.borderRadius = '8px'
     deleteButton.style.padding = '16px 8px'
