@@ -160,10 +160,14 @@ a:hover {
   color: #757575;
 }
 
+.copy-btn:hover, .copy-btn:active{
+  transition: 100ms;
+  opacity: 0.9;
+}
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   th,
