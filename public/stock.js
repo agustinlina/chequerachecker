@@ -2,7 +2,9 @@ const ENDPOINTS = {
   olavarria:
     'https://corsproxy.io/?https://api-stock-live.vercel.app/api/stock_olav',
   cordoba:
-    'https://corsproxy.io/?https://api-stock-live.vercel.app/api/stock_cba'
+    'https://corsproxy.io/?https://api-stock-live.vercel.app/api/stock_cba',
+    polo:
+    'https://corsproxy.io/?https://api-stock-live.vercel.app/api/stock_polo'
 }
 
 const tableBody = document.querySelector('#stock-table tbody')
