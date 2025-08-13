@@ -199,7 +199,7 @@ a:hover {
 
 .jira-button-stock:hover {
   transition: 100ms;
-  background-color: #b69b00!important;
+  background-color: #b69b00 !important;
   text-decoration: none;
   outline: 3px solid #16245a;
 }
@@ -274,5 +274,9 @@ tbody tr:hover {
     margin-right: 3px;
     font-size: 0.99em;
     letter-spacing: 0.3px;
+  }
+  table{
+    font-size: 12px;
+      
   }
 }
