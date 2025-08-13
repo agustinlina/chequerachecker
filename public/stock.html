@@ -17,8 +17,8 @@
   <header class="w-100 header_color">
     <nav class="navbar position-static w-100 header_color">
       <div class="container-fluid header_color">
-        <a class="navbar-brand d-flex gap-3 align-items-center" href="./index.html"><img src="./media/logo.svg" alt=""><span
-            style="font-size: 24px;font-weight:bold;">La Unión</span></a>
+        <a class="navbar-brand d-flex gap-3 align-items-center" href="./index.html"><img src="./media/logo.svg"
+            alt=""><span style="font-size: 24px;font-weight:bold;">La Unión</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -48,6 +48,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="https://presupuestapp-jade.vercel.app">Presupuestador</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" target="_blank"
+                  href="https://launionneumaticos.atlassian.net/servicedesk/customer/portals">Jira</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -57,6 +61,12 @@
   <div class="container background-color d-flex flex-column align-items-center">
 
     <h2>Stock: Cubiertas nuevas</h2>
+    <br>
+    <h3>Realizar pedido:</h3>
+    <br>
+    <a class="jira-button-stock" href="https://launionneumaticos.atlassian.net/servicedesk/customer/portals" target="_blank">
+      <img src="./media/jira_dark.svg" width="48px" alt=""><span>Jira</span>
+    </a>
     <br>
     <label for="stock-select" style="font-weight:600;">Filtros:</label>
     <br>
@@ -79,12 +89,12 @@
           <th>Descripción</th>
           <th>Rubro</th>
           <th>Stock</th>
+          <th>Precio</th> <!-- NUEVO -->
         </tr>
       </thead>
-      <tbody>
-        <!-- Datos aquí -->
-      </tbody>
+      <tbody></tbody>
     </table>
+
     <div id="loading" class="loader"></div>
     <div id="error"></div>
   </div>
