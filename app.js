@@ -4,7 +4,6 @@
 // 1. npm init -y
 // 2. npm install express
 // 3. node app.js
-
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -28,6 +27,15 @@ app.get('/stock', (req, res) => {
 
 app.get('/calculadora', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'calculadora.html'));
+});
+
+// ✅ NUEVO: login.html y alias /login
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 // Ruta de comprobación de salud

@@ -1,10 +1,21 @@
+/* Dark & Minimalist CSS para stock.html */
+:root {
+  --text: rgb(225, 233, 242);
+  --background: rgb(10, 19, 28);
+  --primary: rgb(143, 185, 226);
+  --secondary: rgb(24, 77, 129);
+  --accent: rgb(60, 146, 231);
+  --card: hsl(210, 59%, 72%, 5%);
+  --selected: hsl(210, 59%, 72%, 20%);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
-  background: #121212;
+  background-color: var(--background) !important;
   color: #fff;
   font-family: sans-serif;
   display: flex;

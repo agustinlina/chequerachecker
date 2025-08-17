@@ -23,11 +23,10 @@ const stockSelect = document.getElementById('stock-select')
 const filtroBtns = [filtroCamion, filtroAuto, filtroTodos]
 
 let allData = []
-let stockActual = 'olavarria'
+let stockActual = 'cordoba'
 
 // -------------------- Utilidades --------------------
 
-// Normaliza texto para búsquedas por rubro/descripción
 function normalizar (str) {
   return (str || '')
     .toLowerCase()
@@ -36,42 +35,33 @@ function normalizar (str) {
     .replace(/\s+/g, '')
 }
 
-// Limpia código (espacios y mayúsculas)
 function clean (str) {
-  return String(str || '')
-    .trim()
-    .toUpperCase()
+  return String(str || '').trim().toUpperCase()
 }
 
-// Divide un campo de código tipo "A/B/C" en candidatos ["A","B","C"]
-// Soporta separadores "/" y " / " (y múltiples espacios).
+// Divide "A/B/C" en ["A","B","C"]
 function splitCandidates (raw) {
   if (!raw) return []
   return String(raw)
-    .split('/') // separar por slash
+    .split('/')
     .map(s => clean(s))
-    .filter(Boolean) // quitar vacíos
+    .filter(Boolean)
 }
 
-// Toma el primer código si viene "X/Y/Z"
+// Primer código visible/copiable
 function primaryCode (raw) {
   const parts = splitCandidates(raw)
   return parts[0] || ''
 }
 
 /**
- * Genera claves equivalentes para matchear un único código:
- * - Letra + dígitos (p.ej. X1100050, F42) -> agregar variante solo-dígitos (1100050 / 42).
- * - Caso especial T + dígitos (T1100000) -> agregar sin T (1100000) y viceversa.
- * - Solo dígitos -> agregar T + dígitos también (para cubrir T####).
- * - Quita separadores ( - _ . espacios ) como variante adicional.
- * - Remueve ceros a la izquierda en la variante numérica.
+ * Variantes equivalentes para un único código.
+ * Cubre: quitar separadores, T#### ↔ ####, letra+num → num, y normaliza ceros.
  */
 function codeKeysOne (raw) {
   const c = clean(raw)
   const keys = new Set([c])
 
-  // Variante sin separadores internos
   const noSep = c.replace(/[\s\-_.]/g, '')
   if (noSep !== c) keys.add(noSep)
 
@@ -84,18 +74,18 @@ function codeKeysOne (raw) {
     return Array.from(keys)
   }
 
-  // Cualquier letra + dígitos (X123, F48, etc.)
+  // Letra + dígitos
   m = /^([A-Z])(\d+)$/.exec(c)
   if (m) {
     const num = (m[2] || '').replace(/^0+/, '') || '0'
-    keys.add(num) // 123 / 48
+    keys.add(num)
   } else {
     // Solo dígitos
     m = /^(\d+)$/.exec(c)
     if (m) {
       const num = (m[1] || '').replace(/^0+/, '') || '0'
-      keys.add(num) // normalizado
-      keys.add('T' + num) // T#### para cubrir variantes T
+      keys.add(num)
+      keys.add('T' + num)
     }
   }
 
@@ -103,14 +93,11 @@ function codeKeysOne (raw) {
 }
 
 /**
- * Para un campo de stock que puede venir "F42 / F68", genera
- * una lista de claves en ORDEN DE PRIORIDAD:
- * - Primero las variantes de F42
- * - Si no hay match, probar variantes de F68
- * - etc.
+ * Claves en orden de prioridad para un campo "F42 / F68".
+ * Primero F42 (con sus variantes), luego F68, etc.
  */
 function codeKeys (raw) {
-  const parts = splitCandidates(raw) // ["F42","F68"]
+  const parts = splitCandidates(raw)
   const out = []
   const seen = new Set()
   for (const p of parts) {
@@ -122,6 +109,13 @@ function codeKeys (raw) {
     }
   }
   return out
+}
+
+// Clave canónica de un item para fusionar (la primera variante del primer código)
+function canonicalKey (raw) {
+  const p = primaryCode(raw)
+  const variants = codeKeysOne(p)
+  return variants[0] || clean(p) || ''
 }
 
 function esCamionImportado (rubro) {
@@ -148,21 +142,25 @@ function formatPrecio (n) {
   return '$ ' + Number(n).toLocaleString('es-AR')
 }
 
+// Convierte campo stock a número seguro
+function parseStock (s) {
+  if (s === null || s === undefined) return 0
+  if (typeof s === 'number' && !Number.isNaN(s)) return s
+  const cleaned = String(s).replace(/\./g, '').replace(',', '.').trim()
+  const n = Number(cleaned)
+  return Number.isFinite(n) ? n : 0
+}
+
 // -------------------- Render --------------------
 
 function renderTable (data) {
   tableBody.innerHTML = ''
-  if (data.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="4" style="text-align:center;">Sin resultados</td></tr>`
-    return
-  }
+  if (!data || data.length === 0) return
 
   data.forEach(item => {
     const tr = document.createElement('tr')
 
-    // Mostrar/copiar SIEMPRE el primer código
     const codigoDisplay = primaryCode(item.codigo)
-
     const buttonHTML = `
       <button 
         class="copy-btn" 
@@ -176,8 +174,8 @@ function renderTable (data) {
     tr.innerHTML = `
       <td>${buttonHTML} ${item.descripcion || ''}</td>
       <td>${item.rubro || ''}</td>
-      <td>${item.stock || ''}</td>
-      <td style="white-space:nowrap;">${formatPrecio(item.precio)}</td>
+      <td>${item.stock ?? ''}</td>
+      <td style="white-space: nowrap;">${formatPrecio(item.precio)}</td>
     `
 
     tableBody.appendChild(tr)
@@ -202,56 +200,99 @@ function setActiveBtn (btn) {
 }
 
 function aplicarFiltros () {
+  // Si el buscador está vacío, NO mostramos nada
+  const valor = buscador.value.trim().toLowerCase()
+  if (!valor) {
+    renderTable([])
+    return
+  }
+
   let datos = [...allData]
+
   if (window.filtroActivo === 'camion') {
     datos = datos.filter(item => esCamionImportado(item.rubro))
   } else if (window.filtroActivo === 'auto') {
     datos = datos.filter(item => esAutoImportado(item.rubro))
   }
 
-  const valor = buscador.value.trim().toLowerCase()
-  if (valor) {
-    datos = datos.filter(
-      item =>
-        (item.codigo && String(item.codigo).toLowerCase().includes(valor)) ||
-        (item.descripcion && item.descripcion.toLowerCase().includes(valor))
-    )
-  }
+  datos = datos.filter(
+    item =>
+      (item.codigo && String(item.codigo).toLowerCase().includes(valor)) ||
+      (item.descripcion && item.descripcion.toLowerCase().includes(valor))
+  )
 
   renderTable(datos)
 }
 
 // -------------------- Carga y Merge --------------------
 
+// Fusiona arrays de stock sumando "stock" cuando coinciden por canonicalKey
+function mergeStocksSum (arrA, arrB) {
+  const map = new Map()
+
+  function upsert (it) {
+    const key = canonicalKey(it?.codigo)
+    if (!key) return
+    const curr = map.get(key)
+    const stockNum = parseStock(it?.stock)
+
+    if (!curr) {
+      // guardamos el primero que aparece
+      map.set(key, { ...it, stock: stockNum })
+    } else {
+      // sumamos stock y completamos descripciones vacías si hace falta
+      curr.stock = parseStock(curr.stock) + stockNum
+      if (!curr.descripcion && it.descripcion) curr.descripcion = it.descripcion
+      if (!curr.rubro && it.rubro) curr.rubro = it.rubro
+      // mantener el "codigo" visible como el primer código original
+      // (sin cambios)
+    }
+  }
+
+  ;(Array.isArray(arrA) ? arrA : []).forEach(upsert)
+  ;(Array.isArray(arrB) ? arrB : []).forEach(upsert)
+
+  return Array.from(map.values())
+}
+
 async function cargarDatos (stock) {
   loading.style.display = ''
   error.textContent = ''
-  buscador.value = ''
   window.filtroActivo = null
   setActiveBtn(null)
 
   try {
-    const [respStock, respPrices] = await Promise.all([
-      fetch(ENDPOINTS[stock]),
-      fetch(PRICES_URL)
-    ])
+    // 1) Traer precios siempre
+    const pricesPromise = fetch(PRICES_URL).then(r => r.json())
 
-    const dataStock = await respStock.json()
-    const dataPrices = await respPrices.json()
+    let dataStock
 
-    // Mapa de precios: guardar TODAS las variantes para cada código de price
+    if (stock === 'cordoba') {
+      // 2) Córdoba unificado: Córdoba + Polo (sumando duplicados)
+      const [dataCba, dataPolo] = await Promise.all([
+        fetch(ENDPOINTS.cordoba).then(r => r.json()),
+        fetch(ENDPOINTS.polo).then(r => r.json())
+      ])
+      dataStock = mergeStocksSum(dataCba, dataPolo)
+    } else {
+      // 2) Cualquier otro depósito: tal cual
+      dataStock = await fetch(ENDPOINTS[stock]).then(r => r.json())
+    }
+
+    const dataPrices = await pricesPromise
+
+    // 3) Construir mapa de precios por variantes
     const priceMap = new Map()
     ;(Array.isArray(dataPrices) ? dataPrices : []).forEach(p => {
       const precio = p?.precio ?? null
-      // indexar por variantes del código de la tabla de precios
       codeKeysOne(p?.codigo).forEach(k => {
         if (!priceMap.has(k)) priceMap.set(k, precio)
       })
     })
 
-    // Merge: para cada item de stock, probar candidatos en orden (F42, luego F68, etc.)
+    // 4) Merge de precios por orden de prioridad de claves
     allData = (Array.isArray(dataStock) ? dataStock : []).map(item => {
-      const keys = codeKeys(item?.codigo) // ordenadas por prioridad
+      const keys = codeKeys(item?.codigo)
       let precio = null
       for (const k of keys) {
         if (priceMap.has(k)) {
@@ -263,11 +304,12 @@ async function cargarDatos (stock) {
     })
 
     loading.style.display = 'none'
-    renderTable(allData)
+    aplicarFiltros() // solo muestra si hay búsqueda
   } catch (err) {
     console.error('Error al cargar datos:', err)
     loading.style.display = 'none'
     error.textContent = 'Error al cargar datos'
+    renderTable([]) // asegurar tabla vacía en error
   }
 }
 
@@ -301,5 +343,6 @@ stockSelect.addEventListener('change', e => {
 // Inicial
 window.addEventListener('DOMContentLoaded', () => {
   setActiveBtn(filtroTodos)
+  renderTable([])     // tabla vacía de entrada
   cargarDatos(stockActual)
 })

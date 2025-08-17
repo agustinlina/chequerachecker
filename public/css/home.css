@@ -1,16 +1,23 @@
 /* Dark & Minimalist CSS para stock.html */
 :root {
-  --bg-color: #121212;
-  --fg-color: #e0e0e0;
-  --accent: #e9c500;
-  --border-color: #272727;
-  --hover-color: #1f1f1f;
+  --text: rgb(225, 233, 242);
+  --background: rgb(10, 19, 28);
+  --primary: rgb(143, 185, 226);
+  --secondary: rgb(24, 77, 129);
+  --accent: rgb(60, 146, 231);
+  --card:hsl(210, 59%, 72%, 5%);
+  --selected:hsl(210, 59%, 72%, 20%);
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+   background-color: var(--background)!important;
 }
 
 .header {
@@ -32,20 +39,19 @@
   border-radius: 36px;
   gap: 24px;
   line-break: 5px;
-  background-color: #233475;
+  background-color: var(--card);
 }
 
 .header a:hover {
   transition: 200ms;
- background-color: #1e2c62;
+  background-color: var(--selected);
 }
 
 .grupo_tarjetitas {
   display: flex;
   gap: 16px;
-  flex-direction: row;
+  flex-direction: column;
 }
-
 
 .container {
   max-width: 700px;

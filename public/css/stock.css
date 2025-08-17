@@ -1,10 +1,16 @@
 /* Dark & Minimalist CSS para stock.html */
 :root {
-  --bg-color: #121212;
-  --fg-color: #e0e0e0;
-  --accent-color: #e9c500;
-  --border-color: #272727;
-  --hover-color: #1f1f1f;
+  --text: rgb(225, 233, 242);
+  --background: rgb(10, 19, 28);
+  --primary: rgb(143, 185, 226);
+  --secondary: rgb(24, 77, 129);
+  --accent: rgb(60, 146, 231);
+  --card:hsl(210, 59%, 72%, 5%);
+  --selected:hsl(210, 59%, 72%, 20%);
+}
+
+body{
+   background-color: var(--background)!important;
 }
 
 .buscador {
@@ -33,7 +39,6 @@
 .container {
   max-width: 700px;
   margin: 2rem auto;
-  background: #1e1e1e;
   padding: 0.8rem;
   border-radius: 12px;
 }
@@ -133,8 +138,8 @@ a:hover {
 
 /* Botones de filtro */
 .filtro-btn {
-  background-color: var(--accent-color);
-  color: #16245a;
+  background-color: var(--secondary);
+  color: var(--text)!important;
   border: 1.5px solid var(--border-color);
   border-radius: 8px;
   padding: 8px 16px;
@@ -147,9 +152,8 @@ a:hover {
 
 .filtro-btn:hover,
 .filtro-btn.active {
-  background: #16245a;
-  color: var(--accent-color);
-  border-color: var(--accent-color);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .lupita {
@@ -169,7 +173,7 @@ a:hover {
 .loader {
   width: 48px;
   height: 48px;
-  border: 5px solid var(--accent-color);
+  border: 5px solid var(--accent);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -187,22 +191,6 @@ a:hover {
   }
 }
 
-.jira-button-stock {
-  text-decoration: none;
-  color: #233475 !important;
-  background-color: var(--accent-color);
-  font-weight: bold;
-  font-size: 22px;
-  padding: 4px 32px;
-  border-radius: 12px;
-}
-
-.jira-button-stock:hover {
-  transition: 100ms;
-  background-color: #b69b00 !important;
-  text-decoration: none;
-  outline: 3px solid #16245a;
-}
 
 table {
   width: 100%;
@@ -213,7 +201,7 @@ table {
 th,
 td {
   padding: 16px 8px;
-  border: 1px solid var #e9c500;
+  border: 1px solid var var(--secondary);
   background-color: #16245a;
 }
 
@@ -225,8 +213,8 @@ th {
 }
 
 tbody tr {
-  border-bottom: 1px solid var #e9c500;
-  border: 1px solid #e9c500;
+  border-bottom: 1px solid var(--secondary);
+  border: 1px solid var(--secondary);
 }
 
 tbody tr:nth-child(even) {
